@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ynn.dl - Downloader</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: white;
+      padding: 24px;
+    }
+    main {
+      max-width: 600px;
+      margin: 70px auto;
+      text-align: center;
+    }
+    h1 { font-size: 42px; }
+    h1 span { color: #60a5fa; }
+    p { color: #b8c2d9; line-height: 1.6; }
+    input, button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 12px;
+      border-radius: 12px;
+      font-size: 16px;
+    }
+    input {
+      border: 1px solid #39435c;
+      background: #151d32;
+      color: white;
+    }
+    button {
+      background: #3b82f6;
+      border: 0;
+      color: white;
+      font-weight: bold;
+    }
+    #status { overflow-wrap: anywhere; }
+    footer { margin-top: 50px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Ynn<span>.dl</span></h1>
+    <p>Downloader simpel, cepat, dan praktis.</p>
+
+    <input id="url" type="url"
+      placeholder="Tempel link video di sini">
+
+    <button onclick="downloadVideo()">
+      Lanjutkan
+    </button>
+
+    <p id="status">
+      Masukkan link untuk memulai.
+    </p>
+
+    <footer>Ynn.dl © 2026</footer>
+  </main>
+
+  <script>
+    function downloadVideo() {
+      const input = document.getElementById("url").value.trim();
+      const status = document.getElementById("status");
+
+      if (!input) {
+        status.textContent = "Masukkan link terlebih dahulu!";
+        return;
+      }
+
+      try {
+        const parsed = new URL(input);
+        if (parsed.protocol !== "https:" &&
+            parsed.protocol !== "http:") {
+          throw new Error();
+        }
+        status.textContent =
+          "Link sudah dimasukkan. Fitur pemrosesan downloader perlu backend.";
+      } catch {
+        status.textContent = "Link tidak valid. Periksa kembali ya!";
+      }
+    }
+  </script>
+</body>
+</html>
+  
